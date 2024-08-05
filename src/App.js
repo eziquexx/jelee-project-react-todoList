@@ -45,10 +45,10 @@ function App() {
     // const updateTodoList = todoList.filter(lists => lists.id !== id);
     // setTodoList(updateTodoList);
 
-    const updateCompTodoList = todoList.filter(lists => lists.id === id);
-    setCompTodo(updateCompTodoList);
+    console.log(id);
+    // const updateCompTodoList = todoList.filter(lists => lists.id === id);
+    // setCompTodo(updateCompTodoList);
   }
-  console.log(compTodo);
   return (
     <div>
       <div>
@@ -80,7 +80,7 @@ function App() {
                       id={ list.id } 
                       text={ list.text } 
                       deleteFunc={ deleteTodoList }
-                      checkFunc={ checkedTodoList }
+                      checkFunc1={ checkedTodoList }
                     />
                   )
                 } )
