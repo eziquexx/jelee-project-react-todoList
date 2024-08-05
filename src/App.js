@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled, { css, useTheme } from 'styled-components'
 import TodoListInput from './components/TodoListInput';
 
@@ -9,7 +9,9 @@ function App() {
 
   // 리스트 담을 상태변수 생성
   const [listText, setListText] = useState('');
-  const changeListText = (e) => { setListText(e.target.value) };
+  const changeListText = (e) => {
+    setListText(e.target.value);
+  };
 
   const addList = (e) => {
     e.preventDefault(); // 새로고침 방지
@@ -45,7 +47,7 @@ function App() {
             <legend>List</legend>
             <ul>
               {
-                todoList.map( (list, index) => {
+                todoList.map( (list) => {
                   return (
                     <TodoListInput id={list.id} text={list.text} />
                   )

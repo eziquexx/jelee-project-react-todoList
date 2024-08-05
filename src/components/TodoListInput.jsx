@@ -1,6 +1,6 @@
 function TodoListInput(props) {
   return (
-      <li key={props.id}>{props.id}.{props.text}<button>삭제</button></li>
+      <li key={props.id}>{props.id}. {props.text}<button>삭제</button></li>
   );
 }
 
