@@ -15,7 +15,7 @@ function App() {
 
   // 완료된 todo 담을 배열
   const [compTodo, setCompTodo] = useState([]);
-
+  // console.log(compTodo);
   
   // input에 포커스 시키기
   const textInput = useRef(null);
@@ -42,12 +42,13 @@ function App() {
   }
 
   const checkedTodoList = (id) => {
-    // const updateTodoList = todoList.filter(lists => lists.id === id);
-    // setCompTodo(updateTodoList);
-    console.log(id);
+    // const updateTodoList = todoList.filter(lists => lists.id !== id);
+    // setTodoList(updateTodoList);
 
+    const updateCompTodoList = todoList.filter(lists => lists.id === id);
+    setCompTodo(updateCompTodoList);
   }
-
+  console.log(compTodo);
   return (
     <div>
       <div>
@@ -94,11 +95,20 @@ function App() {
           <fieldset>
             <legend>Completed To do</legend>
             <ul>
-              <li>
+              {
+                compTodo.map( (complist) => {
+                  <li key={ complist.id }>
+                    <p>{ complist.id }{ complist.text }</p>
+                    <button>삭제</button>
+                    <button>복구</button>
+                  </li>
+                } )
+              }
+              {/* <li>
                 <p>목록 내용</p>
                 <button>삭제</button>
                 <button>복구</button>
-              </li>
+              </li> */}
             </ul>
           </fieldset>
         </form>

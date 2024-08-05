@@ -5,15 +5,17 @@ function TodoListInput(props) {
   const [test, setTest] = useState({});
   // 체크되면 해당 id값을 불러오기.
   // 체크된 id값을 comp변수에 담기
-
-  const checkFunc2 = (e) => setVisible(e.target.checked);
+  const checkFunc2 = (e) => {
+    setVisible(e.target.checked);
+    props.checkFunc(test.id);
+  }
+  
   useEffect( () => {
     if(visible === true) {
       setTest({
         id: props.id,
         text: props.text,
       })
-      props.checkFunc(test);
     } else {
       setTest('');
     }
