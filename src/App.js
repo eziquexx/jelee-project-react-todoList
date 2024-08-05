@@ -1,17 +1,28 @@
-import { useState, useRef } from 'react';
-import styled, { css, useTheme } from 'styled-components'
+import { useState, useRef, useEffect } from 'react';
 import TodoListInput from './components/TodoListInput';
 
 
 function App() {
+
   // todo list 담을 배열
-  const [todoList, setTodoList] = useState( [] );
+  const [todoList, setTodoList] = useState([]);
 
   // 리스트 담을 상태변수 생성
   const [listText, setListText] = useState('');
   const changeListText = (e) => {
     setListText(e.target.value);
   };
+
+  // 완료된 todo 담을 배열
+  const [compTodo, setCompTodo] = useState([]);
+
+  
+  // input에 포커스 시키기
+  const textInput = useRef(null);
+  
+  useEffect(() => {
+    textInput.current.focus();
+  }, [todoList]);
 
   const addList = (e) => {
     e.preventDefault(); // 새로고침 방지
@@ -22,6 +33,19 @@ function App() {
     // 새로운 List text 생성
     const newTodoList = { id: newTodoId, text: listText };
     setTodoList([...todoList, newTodoList])
+    setListText('');
+  }
+
+  const deleteTodoList = (id) => {
+    const updateTodoList = todoList.filter(lists => lists.id !== id);
+    setTodoList(updateTodoList);
+  }
+
+  const checkedTodoList = (id) => {
+    // const updateTodoList = todoList.filter(lists => lists.id === id);
+    // setCompTodo(updateTodoList);
+    console.log(id);
+
   }
 
   return (
@@ -29,10 +53,11 @@ function App() {
       <div>
         <form onSubmit={ addList }>
           <fieldset>
-            <legend>Add</legend>
+            <legend>Add To do</legend>
             <input 
               type='text' 
               value={ listText } 
+              ref={ textInput }
               placeholder='입력해주세요' 
               onChange={ changeListText }
             ></input>
@@ -44,15 +69,36 @@ function App() {
       <div>
         <form>
           <fieldset>
-            <legend>List</legend>
+            <legend>To do List</legend>
             <ul>
               {
                 todoList.map( (list) => {
                   return (
-                    <TodoListInput id={list.id} text={list.text} />
+                    <TodoListInput 
+                      key={ list.id  }
+                      id={ list.id } 
+                      text={ list.text } 
+                      deleteFunc={ deleteTodoList }
+                      checkFunc={ checkedTodoList }
+                    />
                   )
                 } )
               }
+            </ul>
+          </fieldset>
+        </form>
+      </div>
+
+      <div>
+        <form>
+          <fieldset>
+            <legend>Completed To do</legend>
+            <ul>
+              <li>
+                <p>목록 내용</p>
+                <button>삭제</button>
+                <button>복구</button>
+              </li>
             </ul>
           </fieldset>
         </form>
