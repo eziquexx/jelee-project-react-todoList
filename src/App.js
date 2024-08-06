@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import TodoListInput from './components/TodoListInput';
+import TodoCompInput from './components/TodoCompInput';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 
   // 완료된 todo 담을 배열
   const [compTodo, setCompTodo] = useState([]);
+  // const [compTodoList, setCompTodoList] = useState([]);
   // console.log(compTodo);
   
   // input에 포커스 시키기
@@ -25,7 +27,7 @@ function App() {
   }, [todoList]);
 
   const addList = (e) => {
-    e.preventDefault(); // 새로고침 방지
+    e.preventDefault();
 
     // 새로운 todo id 생성
     const newTodoId = todoList.length > 0 ? Math.max(...todoList.map(list => list.id)) + 1 : 1;
@@ -42,13 +44,29 @@ function App() {
   }
 
   const checkedTodoList = (id) => {
-    // const updateTodoList = todoList.filter(lists => lists.id !== id);
-    // setTodoList(updateTodoList);
+    const checkedList = todoList.filter(lists => lists.id === id);
+    const updateTodoList = todoList.filter(lists => lists.id !== id);
+    console.log('checkedList 값은', ...checkedList);
+    // console.log('checkedList 타입은', typeof checkedList);
 
-    console.log(id);
-    // const updateCompTodoList = todoList.filter(lists => lists.id === id);
-    // setCompTodo(updateCompTodoList);
+    setCompTodo([...compTodo, ...checkedList]);
+    setTodoList(updateTodoList);
+    // setCompTodoList(...compTodoList, compTodo); 
   }
+  useEffect( () => {
+    // console.log('todoList현재값', todoList);
+    // console.log('todoList타입', typeof todoList);
+    console.log('compTodo현재값', compTodo);
+    console.log('compTodo타입', typeof compTodo);
+  //   console.log('compTodoList현재값', compTodoList);
+  //   console.log('compTodoList타입', typeof compTodoList);
+  }, [compTodo])
+
+  const deleteCompList = (id) => {
+    const updateCompList = compTodo.filter(lists => lists.id !== id);
+    setCompTodo(updateCompList);
+  }
+
   return (
     <div>
       <div>
@@ -79,8 +97,8 @@ function App() {
                       key={ list.id  }
                       id={ list.id } 
                       text={ list.text } 
-                      deleteFunc={ deleteTodoList }
-                      checkFunc1={ checkedTodoList }
+                      deleteFunc_1={ deleteTodoList }
+                      checkFunc_1={ checkedTodoList }
                     />
                   )
                 } )
@@ -96,19 +114,17 @@ function App() {
             <legend>Completed To do</legend>
             <ul>
               {
-                compTodo.map( (complist) => {
-                  <li key={ complist.id }>
-                    <p>{ complist.id }{ complist.text }</p>
-                    <button>삭제</button>
-                    <button>복구</button>
-                  </li>
+                compTodo.map( (list) => {
+                  return (
+                    <TodoCompInput 
+                      key={ list.id }
+                      id={ list.id } 
+                      text={ list.text } 
+                      deleteFunc_3={ deleteCompList }
+                    />
+                  )
                 } )
               }
-              {/* <li>
-                <p>목록 내용</p>
-                <button>삭제</button>
-                <button>복구</button>
-              </li> */}
             </ul>
           </fieldset>
         </form>
