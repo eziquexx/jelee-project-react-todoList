@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 function TodoCompInput(props) {
   // const [test, setTest] = useState(props);
   console.log('props로 받은 compTodo 값', props);

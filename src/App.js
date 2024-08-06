@@ -1,6 +1,23 @@
 import { useState, useRef, useEffect } from 'react';
 import TodoListInput from './components/TodoListInput';
 import TodoCompInput from './components/TodoCompInput';
+import styled from 'styled-components';
+
+const AllContainer = styled.div`
+  width: 50%;
+  height: auto;
+  position: relative;
+  display: flex;
+`
+
+const Form = styled.form`
+  width: 100%;
+  height: auto;
+  form:not(:last-child) {
+    margin-bottom: 30px;
+  }
+`
+
 
 
 function App() {
@@ -70,7 +87,7 @@ function App() {
   return (
     <div>
       <div>
-        <form onSubmit={ addList }>
+        <Form onSubmit={ addList }>
           <fieldset>
             <legend>Add To do</legend>
             <input 
@@ -82,11 +99,11 @@ function App() {
             ></input>
             <button>추가</button>
           </fieldset>
-        </form>
+        </Form>
       </div>
 
       <div>
-        <form>
+        <Form>
           <fieldset>
             <legend>To do List</legend>
             <ul>
@@ -105,11 +122,11 @@ function App() {
               }
             </ul>
           </fieldset>
-        </form>
+        </Form>
       </div>
 
       <div>
-        <form>
+        <Form>
           <fieldset>
             <legend>Completed To do</legend>
             <ul>
@@ -127,7 +144,7 @@ function App() {
               }
             </ul>
           </fieldset>
-        </form>
+        </Form>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ function TodoListInput(props) {
   // 체크되면 해당 id값을 불러오기.
   // 체크된 id값을 comp변수에 담기
   useEffect( () => {
-    console.log('현재 check상황', visible);
+    // console.log('현재 check상황', visible);
     setTest(props)
     checkFunc_2();
   }, [visible])
