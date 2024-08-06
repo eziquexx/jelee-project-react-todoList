@@ -227,6 +227,7 @@ function App() {
           </Form>
         </FormWrap>
       </FormContainer>
+      <P style={{marginTop: '10px'}}>Dev. JELEE</P>
     </Container>
   );
 }
