@@ -23,7 +23,7 @@ const H2 = styled.h2`
     padding: 14px 0;
     text-align: center;
     background-color: #f0efe9;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
     position: fixed;
     top: 0;
@@ -123,6 +123,9 @@ const Input = styled.input`
   &::placeholder {
     color: #bbb;
   }
+  @media screen and (max-width: 1023px) {
+    font-size: 18px;
+  }
 `
 const AddButton = styled.button`
   padding: 2px 10px;
@@ -134,6 +137,10 @@ const AddButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #155ebd;
+  }
+  @media screen and (max-width: 1023px) {
+    font-size: 18px;
+    padding: 2px 15px;
   }
 `
 

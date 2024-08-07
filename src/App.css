@@ -49,4 +49,7 @@ body {
   .formContainer1 {
     margin-top: 52px;
   }
+  .checkInput input + label + label {
+    font-size: 18px;
+  }
 }
