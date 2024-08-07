@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -5,6 +6,7 @@
 }
 body {
   background-color: #f0efe9;
+  font-family: "Sunflower", sans-serif;
 }
 ::-webkit-scrollbar {
   width: 0;
@@ -28,4 +30,14 @@ body {
   position: relative;
   margin-left: 8px;
   width: 92%;
+}
+
+/* 모바일 */
+@media screen and (max-width: 767px) {
+  
+}
+
+/* 타블렛 */
+@media screen and (max-width: 1023px) {
+  
 }

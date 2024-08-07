@@ -161,7 +161,7 @@ function App() {
 
   return (
     <Container>
-      <H2>To do list</H2>
+      <H2>To-do list</H2>
       <P>*할 일 목록이 영역을 벗어났을 경우 스크롤이 가능합니다.</P>
       <FormContainer>
         <FormWrap style={{ marginBottom: '10px', border: '0' }}>
