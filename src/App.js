@@ -16,16 +16,39 @@ const Container = styled.div`
 `
 const H2 = styled.h2`
   color: #333;
+  margin-top: 6px;
   margin-bottom: 6px;
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    padding: 14px 0;
+    text-align: center;
+    background-color: #f0efe9;
+    font-size: 18px;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: block;
+    color: black;
+    border-bottom: 1px solid #d9d6c7;
+  }
 `
 const P = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   color: #aaa;
   margin-bottom: 10px;
+  @media screen and (max-width: 1023px) {
+    position: absolute;
+    font-size: 12px;
+    margin-top: 0px;
+    bottom: 0px;
+  }
 `
 const FormContainer = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 60%;
+  max-width: 560px;
+  height: 78%;
   position: relative;
   padding: 20px;
   display: flex;
@@ -34,16 +57,29 @@ const FormContainer = styled.div`
   box-sizing: border-box;
   background-color: #fff;
   border: 1px solid #dddddd;
+  overflow: hidden;
   box-shadow: 0px 10px 20px -2px rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border: 0;
+    box-shadow: none;
+  }
+`
+const ListsContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
 `
 const FormWrap = styled.div`
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  border: 1px solid #ddd;
-  &:not(:last-child) {
-    margin-bottom: 12px;
-  }
 `
 const Form = styled.form`
   width: 100%;
@@ -65,10 +101,11 @@ const Ul = styled.ul`
   display: block;
 `
 const Legend = styled.legend`
-  display: none;
+  display: block;
   font-size: 18px;
   font-weight: 600;
-  color: #222;
+  color: #333;
+  margin-bottom: 10px;
 `
 const Input = styled.input`
   display: block;
@@ -162,9 +199,9 @@ function App() {
   return (
     <Container>
       <H2>To-do list</H2>
-      <P>*할 일 목록이 영역을 벗어났을 경우 스크롤이 가능합니다.</P>
-      <FormContainer>
-        <FormWrap style={{ marginBottom: '10px', border: '0' }}>
+      <P className='textP1'>*할 일 목록이 영역을 벗어났을 경우 스크롤이 가능합니다.</P>
+      <FormContainer className='formContainer1'>
+        <FormWrap style={{ paddingBottom: '20px', marginBottom: '10px', borderBottom: '1px solid #ddd' }}>
           <Form onSubmit={ addList } style={{ padding: '0' }}>
             <Fieldset>
               <Legend style={{ display: 'none' }}>Add To do</Legend>
@@ -180,54 +217,57 @@ function App() {
           </Form>
         </FormWrap>
 
-        <FormWrap style={{ height: '70%', overflowY: 'scroll' }}>
-          <Form onSubmit={ e => e.preventDefault() }>
-            <Fieldset>
-              <Legend style={{ marginBottom: '10px' }}>List</Legend>
-              <Ul>
-                {
-                  todoList.map( (list) => {
-                    return (
-                      <TodoListInput 
-                        key={ list.id  }
-                        id={ list.id } 
-                        text={ list.text } 
-                        btnText="-"
-                        deleteFunc_1={ deleteTodoList }
-                        checkFunc_1={ checkedTodoList }
-                      />
-                    )
-                  } )
-                }
-              </Ul>
-            </Fieldset>
-          </Form>
-        </FormWrap>
 
-        <FormWrap style={{ height: '20%', overflowY: 'scroll' }}>
-          <Form onSubmit={ e => e.preventDefault() }>
-            <Fieldset>
-              <Legend>Completed To do</Legend>
-              <Ul>
-                {
-                  compTodo.map( (list) => {
-                    return (
-                      <TodoCompInput 
-                        key={ list.id }
-                        id={ list.id } 
-                        text={ list.text } 
-                        btnText="-"
-                        deleteFunc_3={ deleteCompList }
-                      />
-                    )
-                  } )
-                }
-              </Ul>
-            </Fieldset>
-          </Form>
-        </FormWrap>
+        <ListsContainer className='listsContainer' style={{ overflowY: 'scroll' }}>
+          <FormWrap style={{ paddingBottom: '14px', borderBottom: '1px solid #ddd'}}>
+            <Form onSubmit={ e => e.preventDefault() }>
+              <Fieldset>
+                <Legend>List</Legend>
+                <Ul>
+                  {
+                    todoList.map( (list) => {
+                      return (
+                        <TodoListInput 
+                          key={ list.id  }
+                          id={ list.id } 
+                          text={ list.text } 
+                          btnText="-"
+                          deleteFunc_1={ deleteTodoList }
+                          checkFunc_1={ checkedTodoList }
+                        />
+                      )
+                    } )
+                  }
+                </Ul>
+              </Fieldset>
+            </Form>
+          </FormWrap>
+
+          <FormWrap style={{ marginTop: '14px' }}>
+            <Form onSubmit={ e => e.preventDefault() }>
+              <Fieldset>
+                <Legend>Completed To do</Legend>
+                <Ul>
+                  {
+                    compTodo.map( (list) => {
+                      return (
+                        <TodoCompInput 
+                          key={ list.id }
+                          id={ list.id } 
+                          text={ list.text } 
+                          btnText="-"
+                          deleteFunc_3={ deleteCompList }
+                        />
+                      )
+                    } )
+                  }
+                </Ul>
+              </Fieldset>
+            </Form>
+          </FormWrap>
+        </ListsContainer>
       </FormContainer>
-      <P style={{marginTop: '10px'}}>Dev. JELEE</P>
+      <P style={{ position: 'relative' }}>Dev. JELEE</P>
     </Container>
   );
 }

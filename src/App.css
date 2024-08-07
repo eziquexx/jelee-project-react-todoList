@@ -39,5 +39,14 @@ body {
 
 /* 타블렛 */
 @media screen and (max-width: 1023px) {
-  
+  body {
+    background-color: #fff;
+    overflow: hidden;
+  }
+  .textP1 {
+    display: none;
+  }
+  .formContainer1 {
+    margin-top: 52px;
+  }
 }
