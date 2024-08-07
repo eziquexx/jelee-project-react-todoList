@@ -275,7 +275,7 @@ function App() {
           </FormWrap>
         </ListsContainer>
       </FormContainer>
-      <P style={{ position: 'relative' }}>Dev. JELEE. 2024</P>
+      <P style={{ position: 'relative', marginTop: '10px' }}>Dev. JELEE. 2024</P>
     </Container>
   );
 }
