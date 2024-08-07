@@ -30,7 +30,7 @@ const H2 = styled.h2`
     left: 0;
     z-index: 10;
     display: block;
-    color: black;
+    color: #B2AB85;
     border-bottom: 1px solid #d9d6c7;
   }
 `
@@ -109,13 +109,14 @@ const Legend = styled.legend`
 `
 const Input = styled.input`
   display: block;
-  width: 91%;
+  width: 100%;
   heigth: auto;
   padding: 10px 10px 8px;
   line-height: 120%;
   border-radius: 4px;
   border: 1px solid #dddddd;
   box-sizing: border-box;
+  margin-right: 10px;
   &:focus {
     outline: 1px solid #888888;
   }
@@ -267,7 +268,7 @@ function App() {
           </FormWrap>
         </ListsContainer>
       </FormContainer>
-      <P style={{ position: 'relative' }}>Dev. JELEE</P>
+      <P style={{ position: 'relative' }}>Dev. JELEE. 2024</P>
     </Container>
   );
 }
