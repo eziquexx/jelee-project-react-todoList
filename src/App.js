@@ -37,12 +37,12 @@ const H2 = styled.h2`
 const P = styled.p`
   font-size: 14px;
   color: #aaa;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   @media screen and (max-width: 1023px) {
     position: absolute;
     font-size: 12px;
     margin-top: 0px;
-    bottom: 0px;
+    bottom: 8px;
   }
 `
 const FormContainer = styled.div`
