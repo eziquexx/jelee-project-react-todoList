@@ -15,6 +15,10 @@ const LiStyle = styled.li`
 `
 const P = styled.p`
   text-decoration: line-through;
+  @media screen and (max-width: 1023px) {
+    font-size: 18px;
+    margin-top: 3px;
+  }
 `
 const DelButtonStyle = styled.button`
   padding: 2px 10px;

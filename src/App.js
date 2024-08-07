@@ -20,7 +20,7 @@ const H2 = styled.h2`
   margin-bottom: 6px;
   @media screen and (max-width: 1023px) {
     width: 100%;
-    padding: 14px 0;
+    padding: 14px 0 12px;
     text-align: center;
     background-color: #f0efe9;
     font-size: 20px;

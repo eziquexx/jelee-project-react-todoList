@@ -51,5 +51,6 @@ body {
   }
   .checkInput input + label + label {
     font-size: 18px;
+    top: 3px;
   }
 }
