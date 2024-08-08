@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jelee-project-react-todoList/static/css/main.2b506b8d.css",
-    "main.js": "/jelee-project-react-todoList/static/js/main.150bfb27.js",
+    "main.css": "/jelee-project-react-todoList/static/css/main.dd915d2e.css",
+    "main.js": "/jelee-project-react-todoList/static/js/main.9d976c0a.js",
     "static/js/453.ed3810f9.chunk.js": "/jelee-project-react-todoList/static/js/453.ed3810f9.chunk.js",
     "index.html": "/jelee-project-react-todoList/index.html",
-    "main.2b506b8d.css.map": "/jelee-project-react-todoList/static/css/main.2b506b8d.css.map",
-    "main.150bfb27.js.map": "/jelee-project-react-todoList/static/js/main.150bfb27.js.map",
+    "main.dd915d2e.css.map": "/jelee-project-react-todoList/static/css/main.dd915d2e.css.map",
+    "main.9d976c0a.js.map": "/jelee-project-react-todoList/static/js/main.9d976c0a.js.map",
     "453.ed3810f9.chunk.js.map": "/jelee-project-react-todoList/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b506b8d.css",
-    "static/js/main.150bfb27.js"
+    "static/css/main.dd915d2e.css",
+    "static/js/main.9d976c0a.js"
   ]
 }
