@@ -87,6 +87,7 @@ const Form = styled.form`
   display: block;
   padding: 10px;
   box-sizing: border-box;
+  overflow: hidden;
 `
 const Fieldset = styled.fieldset`
   width: 100%;

@@ -5,6 +5,7 @@ const LiStyle = styled.li`
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   list-style: none;
   padding: 0;
   margin: 0;

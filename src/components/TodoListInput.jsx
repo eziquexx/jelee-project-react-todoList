@@ -6,6 +6,7 @@ const LiStyle = styled.li`
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -16,6 +17,8 @@ const LiStyle = styled.li`
 `
 const Div = styled.div`
   width: 100%;
+  display: flex;
+  align-items: flex-start;
 `
 const CheckInputStyle = styled.input`
   display: none;
