@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -29,12 +30,10 @@ body {
   top: 4px;
   position: relative;
   margin-left: 8px;
-  width: 92%;
-}
-
-/* 모바일 */
-@media screen and (max-width: 767px) {
-  
+  overflow-wrap: anywhere;
+  width: fit-content;
+  margin-right: 8px;
+  /* width: 92%; */
 }
 
 /* 타블렛 */

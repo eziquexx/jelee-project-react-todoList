@@ -79,13 +79,14 @@ const ListsContainer = styled.div`
 const FormWrap = styled.div`
   width: 100%;
   height: auto;
+  padding: 10px;
   box-sizing: border-box;
+  overflow: hidden;
 `
 const Form = styled.form`
   width: 100%;
   height: auto;
   display: block;
-  padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
 `
