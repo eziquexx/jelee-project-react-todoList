@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/jelee-project-react-todoList/static/css/main.5acb62e8.css",
-    "main.js": "/jelee-project-react-todoList/static/js/main.d7d9476d.js",
+    "main.js": "/jelee-project-react-todoList/static/js/main.26272988.js",
     "static/js/453.ed3810f9.chunk.js": "/jelee-project-react-todoList/static/js/453.ed3810f9.chunk.js",
     "index.html": "/jelee-project-react-todoList/index.html",
     "main.5acb62e8.css.map": "/jelee-project-react-todoList/static/css/main.5acb62e8.css.map",
-    "main.d7d9476d.js.map": "/jelee-project-react-todoList/static/js/main.d7d9476d.js.map",
+    "main.26272988.js.map": "/jelee-project-react-todoList/static/js/main.26272988.js.map",
     "453.ed3810f9.chunk.js.map": "/jelee-project-react-todoList/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5acb62e8.css",
-    "static/js/main.d7d9476d.js"
+    "static/js/main.26272988.js"
   ]
 }
