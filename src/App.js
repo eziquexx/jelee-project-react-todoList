@@ -112,7 +112,7 @@ const Legend = styled.legend`
 const Input = styled.input`
   display: block;
   width: 100%;
-  heigth: auto;
+  // heigth: auto;
   padding: 10px 10px 8px;
   line-height: 120%;
   border-radius: 4px;
@@ -120,7 +120,8 @@ const Input = styled.input`
   box-sizing: border-box;
   margin-right: 10px;
   &:focus {
-    outline: 1px solid #888888;
+    outline: none;
+    border: 1px solid #333;
   }
   &::placeholder {
     color: #bbb;
