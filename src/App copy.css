@@ -9,10 +9,7 @@ body {
   background-color: #f0efe9;
   font-family: "Sunflower", sans-serif;
 }
-ul, li {
-  list-style: none;
-}
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0;
 }
 .checkInput input + label {
@@ -22,7 +19,7 @@ ul, li {
   border: 2px solid #bbb;
   display: inline-block;
   vertical-align: middle;
-  user-select: none
+  user-select: none /* 드래그 금지 */
 }
 .checkInput:hover input + label {
   border-color: #6eceab;
@@ -36,8 +33,10 @@ ul, li {
   overflow-wrap: anywhere;
   width: fit-content;
   margin-right: 8px;
+  /* width: 92%; */
 }
 
+/* 타블렛 */
 @media screen and (max-width: 1023px) {
   body {
     background-color: #fff;
@@ -53,4 +52,4 @@ ul, li {
     font-size: 18px;
     top: 3px;
   }
-} */
+}
