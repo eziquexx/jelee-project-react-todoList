@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 // import styled from 'styled-components';
-// import TodoListInput from './components/TodoListInput';
-// import TodoCompInput from './components/TodoCompInput';
+import TodoListInput from './components/TodoListInput';
+import TodoCompInput from './components/TodoCompInput';
 
 // const Container = styled.div`
 //   width: 100%;
@@ -150,53 +150,73 @@ import './App.css';
 
 
 function App() {
- //input list들
-//  const [inputList, setInputList] = useState([]);
- const [inputList, setInputList] = useState([]);
- const [inputText, setInputText] = useState("");
+  const [inputList, setInputList] = useState([]);
+  const [inputText, setInputText] = useState("");
+  const [compInputList, setCompInputList] = useState([]);
+
+  useEffect(() => {
+    const storageItem = [];
+    // const keyWord = "listItem";
+    //localstorage key안에 listItem 글자가 있으면 다음 실행.
+    //storageItem.includes(keyWord) ? true : false;
+    if(localStorage.length < 0 || localStorage.length === 0) {
+      setInputList([]);
+    }
+    // for (let i = 0; i < localStorage.length; i++) {
+    //   const test = JSON.parse(localStorage.getItem(`listItem${i+1}`));
+    //   storageItem.push(...test);
+    // }
+    setInputList(storageItem);
+    console.log(storageItem);
+    // storageItem.includes(keyWord) ? console.log(true) : console.log(false);
+  }, []);
  
- useEffect(() => {
-  const listdata = localStorage.getItem("listItem");
-  if(listdata) {
-    setInputList(JSON.parse(listdata));
+  const submitHandlr = (e) => {
+    e.preventDefault();
   }
- }, []);
- 
- const submitHandlr = (e) => {
-   e.preventDefault();
- }
- const addList = (e) => {
-   e.preventDefault();
-   
-   //아이디값 생성.
-   const newinputId = inputList.length > 0 ? Math.max(...inputList.map(list => list.id)) + 1 : 1;
-   
-   //현재시간 생성.
-   const nowdate = Date.now();
 
-   //listItem객체 생성. id, text, date 값 담기.
-   const newlistItem = {
-     id: newinputId,
-     text: inputText,
-     nowdate: nowdate
-   }
+  const addList = (e) => {
+    e.preventDefault();
+    const newinputId = inputList.length > 0 ? Math.max(...inputList.map(list => list.id)) + 1 : 1;
+    const nowdate = Date.now();
+    const newlistItem = {
+      id: newinputId,
+      text: inputText,
+      nowdate: nowdate
+    }
+    setInputList([...inputList, newlistItem]);
+    setInputText("");
+    localStorage.setItem(`listItem${newlistItem.id}`, JSON.stringify([newlistItem]));
+  }
 
-  //listItem을 inputList array로 담기.
-  setInputList([...inputList, newlistItem]);
-  setInputText("");
+  const delList = (id) => {
+    const updateInpuList = inputList.filter(list => list.id !== id);
+    setInputList(updateInpuList);
+    localStorage.removeItem(`listItem${id}`);
+  }
 
-  //listItem을 localStorage.setItem 하기.
-  localStorage.setItem("listItem", JSON.stringify([...inputList, newlistItem]));
+  const compDelList = (id) => {
+    const updateInpuList = compInputList.filter(list => list.id !==id);
+    setCompInputList(updateInpuList);
+    localStorage.removeItem(`listItem${id}`);
+  }
 
-  //localStorage.getItem하여 data 가져오기.
-  // const getInputItem = JSON.parse(localStorage.getItem("listItem"));
-  
-  
- }
+  const checkedList = (id) => {
+    const chekedinputId = inputList.filter(list => list.id === id);
+    const unChekedinputId = inputList.filter(list => list.id !== id);
+    setInputList([...unChekedinputId]);
+    setCompInputList([...compInputList, ...chekedinputId]);
+  }
 
- useEffect(() => {
-  console.log(inputList);
- }, [inputList])
+  const unCheckedList = (id) => {
+    const checkedinputId = compInputList.filter(list => list.id !== id);
+    const unCheckedinputId = compInputList.filter(list => list.id === id);
+    setCompInputList([...checkedinputId]);
+    setInputList([...inputList, ...unCheckedinputId]);
+  }
+
+
+
   
   return (
     <div>
@@ -219,13 +239,16 @@ function App() {
               {
                 inputList.map((list) => {
                   return(
-                    <li
-                      key={list.id}
-                      id={list.id}
-                      nowdate={list.nowdate}
-                    >{list.text}<button>-</button></li>
+                    <TodoListInput 
+                      key={ list.id }
+                      id={ list.id }
+                      text={ list.text }
+                      nowdate={ list.nowdate }
+                      btnText="-"
+                      checkedfunc={ checkedList }
+                      delfunc={ delList }
+                    />
                   )
-                  
                 })
               }
             </ul>
@@ -236,7 +259,21 @@ function App() {
           <fieldset>
             <legend>Completed To do</legend>
             <ul>
-              <li>완료된 투두리스트<button>-</button></li>
+              {
+                compInputList.map(list => {
+                  return (
+                    <TodoCompInput
+                      key={ list.id }
+                      id={ list.id }
+                      text={ list.text }
+                      nowdate={ list.nowdate }
+                      btnText="-"
+                      unCheckedfunc={ unCheckedList }
+                      delfunc={ compDelList }
+                    />
+                  )
+                })
+              }
             </ul>
           </fieldset>
         </form>
