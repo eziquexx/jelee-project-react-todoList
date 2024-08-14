@@ -153,22 +153,34 @@ function App() {
   const [inputList, setInputList] = useState([]);
   const [inputText, setInputText] = useState("");
   const [compInputList, setCompInputList] = useState([]);
+  
 
   useEffect(() => {
     const storageItem = [];
-    // const keyWord = "listItem";
-    //localstorage key안에 listItem 글자가 있으면 다음 실행.
-    //storageItem.includes(keyWord) ? true : false;
-    if(localStorage.length < 0 || localStorage.length === 0) {
+    const keys = Object.keys(localStorage);
+    const keysString = keys.toString();
+    const keyword = "listItem";
+    const values = Object.values(localStorage);
+    console.log(keys);
+
+    
+    if (keysString.includes(keyword)) {
+      for (let i = 0; i < localStorage.length; i++) {
+        const storageList = JSON.parse( localStorage.getItem(`${keyword}${i+1}`) );
+        storageItem.push(storageList);
+      }
+      setInputList([...storageItem]);
+    } else {
       setInputList([]);
     }
-    // for (let i = 0; i < localStorage.length; i++) {
-    //   const test = JSON.parse(localStorage.getItem(`listItem${i+1}`));
-    //   storageItem.push(...test);
+    // console.log(storageItem);
+    // if(keys.find(keys => keys === keyword)) {
+    //   storageItem.push(JSON.parse( localStorage.getItem(`${keyword}`) ));
+    //   setInputList(...storageItem);
+    // } else {
+    //   setInputList([]);
     // }
-    setInputList(storageItem);
-    console.log(storageItem);
-    // storageItem.includes(keyWord) ? console.log(true) : console.log(false);
+
   }, []);
  
   const submitHandlr = (e) => {
@@ -182,17 +194,29 @@ function App() {
     const newlistItem = {
       id: newinputId,
       text: inputText,
-      nowdate: nowdate
+      nowdate: nowdate,
+      keyword: "listItem"
     }
     setInputList([...inputList, newlistItem]);
     setInputText("");
-    localStorage.setItem(`listItem${newlistItem.id}`, JSON.stringify([newlistItem]));
+    localStorage.setItem(`listItem${newlistItem.id}`, JSON.stringify(newlistItem));
   }
+
 
   const delList = (id) => {
     const updateInpuList = inputList.filter(list => list.id !== id);
     setInputList(updateInpuList);
-    localStorage.removeItem(`listItem${id}`);
+    // const values = JSON.parse(Object.values(localStorage));
+    // const values2 = JSON.parse(Object.values(localStorage) );
+    // const delInputList = values[id-1];
+    // localStorage.removeItem(delInputList);
+    // const test = [...values];
+    // const test2 = JSON.parse(test);
+    // const sample = values.forEach(list => list[3].id === id);
+    // console.log(values[id-1].id, values[id-1].text);   
+    // console.log(values); 
+    // console.log(id);
+
   }
 
   const compDelList = (id) => {
