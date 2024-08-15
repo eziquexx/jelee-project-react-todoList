@@ -148,39 +148,27 @@ import TodoCompInput from './components/TodoCompInput';
 // `
 
 
-
 function App() {
   const [inputList, setInputList] = useState([]);
   const [inputText, setInputText] = useState("");
   const [compInputList, setCompInputList] = useState([]);
   
-
   useEffect(() => {
     const storageItem = [];
     const keys = Object.keys(localStorage);
     const keysString = keys.toString();
     const keyword = "listItem";
-    const values = Object.values(localStorage);
-    console.log(keys);
+    const keysNum = keys.map(list => list.slice(8));
 
-    
     if (keysString.includes(keyword)) {
-      for (let i = 0; i < localStorage.length; i++) {
-        const storageList = JSON.parse( localStorage.getItem(`${keyword}${i+1}`) );
+      keysNum.map(list => {
+        const storageList = JSON.parse( localStorage.getItem(`${keyword}${list}`) );
         storageItem.push(storageList);
-      }
+      })
       setInputList([...storageItem]);
     } else {
       setInputList([]);
     }
-    // console.log(storageItem);
-    // if(keys.find(keys => keys === keyword)) {
-    //   storageItem.push(JSON.parse( localStorage.getItem(`${keyword}`) ));
-    //   setInputList(...storageItem);
-    // } else {
-    //   setInputList([]);
-    // }
-
   }, []);
  
   const submitHandlr = (e) => {
@@ -202,21 +190,10 @@ function App() {
     localStorage.setItem(`listItem${newlistItem.id}`, JSON.stringify(newlistItem));
   }
 
-
   const delList = (id) => {
     const updateInpuList = inputList.filter(list => list.id !== id);
     setInputList(updateInpuList);
-    // const values = JSON.parse(Object.values(localStorage));
-    // const values2 = JSON.parse(Object.values(localStorage) );
-    // const delInputList = values[id-1];
-    // localStorage.removeItem(delInputList);
-    // const test = [...values];
-    // const test2 = JSON.parse(test);
-    // const sample = values.forEach(list => list[3].id === id);
-    // console.log(values[id-1].id, values[id-1].text);   
-    // console.log(values); 
-    // console.log(id);
-
+    localStorage.removeItem(`listItem${id}`)
   }
 
   const compDelList = (id) => {
@@ -239,9 +216,13 @@ function App() {
     setInputList([...inputList, ...unCheckedinputId]);
   }
 
+  const editInputText = (id, text) => {
+    console.log(text);
+    const editiInputList = inputList.filter(list => list.id === id);
+    editiInputList[0].text = text;
+    localStorage.setItem(`listItem${editiInputList[0].id}`, JSON.stringify(...editiInputList));
+  }
 
-
-  
   return (
     <div>
       <h2>To-do list</h2>
@@ -269,6 +250,7 @@ function App() {
                       text={ list.text }
                       nowdate={ list.nowdate }
                       btnText="-"
+                      editTextfunc={ editInputText }
                       checkedfunc={ checkedList }
                       delfunc={ delList }
                     />

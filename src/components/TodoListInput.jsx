@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 // const LiStyle = styled.li`
@@ -52,11 +52,23 @@ function TodoListInput(props) {
     if(checkVisible === true) {
       props.checkedfunc(checkedId.id);
     } 
+  };
+
+  const handleChange = useCallback((e) => {
+    setText(e.target.value);
+  }, []);
+  
+  const handleBlur = useCallback(() => {
+    textEdit();
+  }, [text]);
+
+  const textEdit = () => {
+    props.editTextfunc(props.id, text);
   }
 
   const delList = () => {
     props.delfunc(props.id);
-  }
+  };
 
   return (
       <li key={props.id} className="checkInput">
@@ -69,9 +81,10 @@ function TodoListInput(props) {
           />
           <label htmlFor={props.id}></label>
           <input 
-            type="text" 
+            type="text"
             value={text}
-            onChange={ e => setText(e.target.value) }
+            onBlur={handleBlur}
+            onChange={handleChange}
           />
         </div>
         <button onClick={delList}>{ btnText || "button" }</button>
