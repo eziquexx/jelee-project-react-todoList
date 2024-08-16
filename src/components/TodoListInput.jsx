@@ -50,7 +50,7 @@ function TodoListInput(props) {
 
   const checkedfuncVisible = () => {
     if(checkVisible === true) {
-      props.checkedfunc(checkedId.id);
+      props.checkedfunc(checkedId.id, checkedId.checked);
     } 
   };
 

@@ -48,7 +48,7 @@ function TodoCompInput(props) {
 
   const unCheckedfuncVisible = () => {
     if (checkVisible === false) {
-      props.unCheckedfunc(unCheckedId.id);
+      props.unCheckedfunc(unCheckedId.id, unCheckedId.checked);
     }
   };
 
@@ -71,6 +71,7 @@ function TodoCompInput(props) {
         <input 
           type="text" 
           value={text}
+          disabled
           onChange={e => setText(e.target.value) }
         />
         <button onClick={delCompList}>{btnText || "button"}</button>

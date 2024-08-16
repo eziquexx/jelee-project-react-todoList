@@ -12,10 +12,10 @@ body {
 ul, li {
   list-style: none;
 }
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0;
 }
-.checkInput input + label {
+/* .checkInput input + label {
   width: 12px;
   height: 12px;
   margin-top: 8px;
@@ -36,7 +36,7 @@ ul, li {
   overflow-wrap: anywhere;
   width: fit-content;
   margin-right: 8px;
-}
+} */
 
 @media screen and (max-width: 1023px) {
   body {
@@ -53,4 +53,4 @@ ul, li {
     font-size: 18px;
     top: 3px;
   }
-} */
+}
