@@ -66,19 +66,10 @@ const ListsContainer = styled.div`
   height: auto;
   display: block;
   overflow: auto;
-  background-color: #ddd;
   @media screen and (max-width: 1023px) {
-    // margin-top: 10px;
     margin-bottom: 30px;
   }
 `
-// const FormWrap = styled.div`
-//   width: 100%;
-//   height: auto;
-//   padding: 10px;
-//   box-sizing: border-box;
-//   overflow: hidden;
-// `
 const Form = styled.form`
   width: 100%;
   height: auto;
@@ -86,35 +77,32 @@ const Form = styled.form`
   display: flex;
   overflow: hidden;
 `
-// const Fieldset = styled.fieldset`
-//   width: 100%;
-//   height: auto;
-//   position: relative;
-//   display: flex;
-//   justify-content: space-between;
-//   border: 0;
-// `
-// const Ul = styled.ul`
-//   width: 100%;
-//   display: block;
-// `
-// const Legend = styled.legend`
-//   display: block;
-//   font-size: 18px;
-//   font-weight: 600;
-//   color: #333;
-//   margin-bottom: 10px;
-// `
+const Fieldset = styled.fieldset`
+  width: 100%;
+  height: auto;
+  position: relative;
+  border: 0;
+`
+const Ul = styled.ul`
+  width: 100%;
+  display: block;
+`
+const Legend = styled.legend`
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  // margin-bottom: 10px;
+`
 const Input = styled.input`
   display: block;
   width: 100%;
-  // heigth: auto;
-  padding: 8px 10px 8px;
+  padding: 6px 8px 4px;
   line-height: 120%;
-  border-radius: 4px;
+  border-radius: 3px;
   border: 1px solid #dddddd;
   box-sizing: border-box;
-  margin-right: 10px;
+  margin-right: 8px;
   &:focus {
     outline: none;
     border: 1px solid #333;
@@ -123,23 +111,20 @@ const Input = styled.input`
     color: #bbb;
   }
   @media screen and (max-width: 1023px) {
-    font-size: 15px;
+    padding: 8px 8px 6px;
+    font-size: 14px;
   }
 `
 const AddButton = styled.button`
-  padding: 2px 10px;
+  padding: 2px 7px;
   font-size: 20px;
-  border: 1px solid #155ebd;
+  border: 1px solid #2972d0;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 3px;
   background-color: #2972d0;
   cursor: pointer;
   &:hover {
     background-color: #155ebd;
-  }
-  @media screen and (max-width: 1023px) {
-    font-size: 18px;
-    padding: 2px 15px;
   }
 `
 
@@ -251,11 +236,13 @@ function App() {
           </Form>
         </div>
 
-        <ListsContainer>
-          <Form onSubmit={ (e) => e.preventDefault() }>
-            <fieldset>
-              <legend>List</legend>
-              <ul>
+        <ListsContainer style={{marginTop:"10px"}}>
+          <Form onSubmit={ (e) => e.preventDefault() } 
+            style={{borderBottom:"1px solid #ddd", paddingBottom:"10px"}}
+          >
+            <Fieldset>
+              <Legend style={{marginBottom:"4px"}}>List</Legend>
+              <Ul>
                 {
                   inputList.map((list) => {
                     return(
@@ -273,14 +260,14 @@ function App() {
                     )
                   })
                 }
-              </ul>
-            </fieldset>
+              </Ul>
+            </Fieldset>
           </Form>
 
-          <Form onSubmit={ (e) => e.preventDefault() }>
-            <fieldset>
-              <legend>Completed To do</legend>
-              <ul>
+          <Form onSubmit={ (e) => e.preventDefault() } style={{marginTop:"14px"}}>
+            <Fieldset>
+              <Legend style={{marginBottom:"4px"}}>Completed To do</Legend>
+              <Ul>
                 {
                   compInputList.map(list => {
                     return (
@@ -297,8 +284,8 @@ function App() {
                     )
                   })
                 }
-              </ul>
-            </fieldset>
+              </Ul>
+            </Fieldset>
           </Form>
         </ListsContainer>
       </FormContainer>

@@ -1,40 +1,56 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
-// const LiStyle = styled.li`
-//   width: 100%;
-//   position: relative;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: flex-start;
-//   list-style: none;
-//   padding: 0;
-//   margin: 0;
-//   cursor: pointer;
-//   &:not(:last-child) {
-//     margin-bottom: 12px;
-//   }
-// `
-// const Div = styled.div`
-//   width: 100%;
-//   display: flex;
-//   align-items: flex-start;
-// `
-// const CheckInputStyle = styled.input`
-//   display: none;
-// `
-// const DelButtonStyle = styled.button`
-//   padding: 2px 10px;
-//   font-size: 20px;
-//   border: 1px solid #c53a3a;
-//   color: #fff;
-//   border-radius: 4px;
-//   background-color: #e44d4d;
-//   cursor: pointer;
-//   &:hover {
-//     background-color: #c53a3a;
-//   }
-// `
+const Li = styled.li`
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  // border: 1px solid red;
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+`
+const Div = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+`
+const CheckInputStyle = styled.input`
+  display: none;
+`
+const InputText = styled.input`
+  width: auto;
+  height: auto;
+  display: inline-block;
+  border: none;
+  line-height: 1;
+  background-color: transparent;
+  overflow-wrap: anywhere;
+  &:focus {
+    width: 100%;
+    outline: none;
+    color: #777;
+  }
+`
+const DelButton = styled.button`
+  width: 22px;
+  height: 22px;
+  line-height: 1;
+  display: block;
+  margin-left: 10px;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 2px;
+  border: 1px solid #EB5F5F;
+  background-color: #EB5F5F;
+  cursor: pointer;
+  &:hover {
+    background-color: #c53a3a;
+  }
+`
 
 
 function TodoListInput(props) {
@@ -71,24 +87,25 @@ function TodoListInput(props) {
   };
 
   return (
-      <li key={props.id} className="checkInput">
-        <div>
-          <input 
+      <Li key={props.id}>
+        <Div>
+          <CheckInputStyle 
             type="checkbox" 
             id={props.id}
+            className="uncheckedInput"
             checked={ checkVisible }
             onChange={ (e) => setCheckVisible(e.target.checked) } 
           />
           <label htmlFor={props.id}></label>
-          <input 
+          <InputText 
             type="text"
             value={text}
             onBlur={handleBlur}
             onChange={handleChange}
           />
-        </div>
-        <button onClick={delList}>{ btnText || "button" }</button>
-      </li>
+        </Div>
+        <DelButton onClick={delList}>{ btnText || "button" }</DelButton>
+      </Li>
   );
 }
 
