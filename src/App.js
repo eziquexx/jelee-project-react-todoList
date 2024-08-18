@@ -43,7 +43,7 @@ const FormContainer = styled.div`
   max-width: 560px;
   height: 78%;
   position: relative;
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -92,7 +92,6 @@ const Legend = styled.legend`
   font-size: 14px;
   font-weight: 600;
   color: #333;
-  // margin-bottom: 10px;
 `
 const Input = styled.input`
   display: block;
@@ -121,6 +120,7 @@ const AddButton = styled.button`
   border: 1px solid #2972d0;
   color: #fff;
   border-radius: 3px;
+  line-height: 1.2;
   background-color: #2972d0;
   cursor: pointer;
   &:hover {
@@ -224,7 +224,7 @@ function App() {
     <Container>
       <H2>To-do list</H2>
       <P>*할 일 목록이 영역을 벗어났을 경우 스크롤이 가능합니다.</P>
-      <FormContainer style={{ backgroundColor:"#fff", padding: "10px" }}>
+      <FormContainer style={{ backgroundColor:"#fff"}}>
         <div style={{marginTop:"10px", marginBottom:"10px"}}>
           <Form onSubmit={submitHandlr}>
             <Input

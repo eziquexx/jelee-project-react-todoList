@@ -31,6 +31,9 @@ const InputText = styled.input`
   overflow-wrap: anywhere;
   color: #777;
   text-decoration: line-through;
+  @media screen and (max-width: 1023px) {
+    font-size: 17px;
+  }
 `
 const DelButton = styled.button`
   width: 22px;
@@ -39,6 +42,7 @@ const DelButton = styled.button`
   display: block;
   margin-left: 10px;
   font-size: 20px;
+  line-height: 0.5;
   color: #fff;
   border-radius: 2px;
   border: 1px solid #EB5F5F;
@@ -46,6 +50,10 @@ const DelButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #c53a3a;
+  }
+  @media screen and (max-width: 1023px) {
+    font-size: 22px;
+    font-weight: 300;
   }
 `
 
@@ -66,7 +74,8 @@ function TodoCompInput(props) {
     }
   };
 
-  const delCompList = () => {
+  const delCompList = (e) => {
+    e.preventDefault();
     props.delfunc(props.id);
   }
 

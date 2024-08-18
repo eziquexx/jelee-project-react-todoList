@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Li = styled.li`
@@ -34,6 +34,9 @@ const InputText = styled.input`
     outline: none;
     color: #777;
   }
+  @media screen and (max-width: 1023px) {
+    font-size: 17px;
+  }
 `
 const DelButton = styled.button`
   width: 22px;
@@ -42,6 +45,7 @@ const DelButton = styled.button`
   display: block;
   margin-left: 10px;
   font-size: 20px;
+  line-height: 0.5;
   color: #fff;
   border-radius: 2px;
   border: 1px solid #EB5F5F;
@@ -49,6 +53,10 @@ const DelButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #c53a3a;
+  }
+  @media screen and (max-width: 1023px) {
+    font-size: 22px;
+    font-weight: 300;
   }
 `
 
@@ -58,6 +66,7 @@ function TodoListInput(props) {
   const [checkedId, setCheckedId] = useState("");
   const { btnText } = props;
   const [text, setText] = useState(props.text);
+  const inputTextRef = useRef();
 
   useEffect(() => {
     setCheckedId(props);
@@ -80,10 +89,17 @@ function TodoListInput(props) {
 
   const textEdit = () => {
     props.editTextfunc(props.id, text);
-  }
+  };
 
-  const delList = () => {
+  const delList = (e) => {
     props.delfunc(props.id);
+  };
+
+  const enterFocusBlur = (e) => {
+    const keyName = e.key;
+    if (keyName === "Enter") {
+      inputTextRef.current.blur();
+    };
   };
 
   return (
@@ -100,8 +116,10 @@ function TodoListInput(props) {
           <InputText 
             type="text"
             value={text}
+            ref={inputTextRef}
             onBlur={handleBlur}
             onChange={handleChange}
+            onKeyDown={enterFocusBlur}
           />
         </Div>
         <DelButton onClick={delList}>{ btnText || "button" }</DelButton>
