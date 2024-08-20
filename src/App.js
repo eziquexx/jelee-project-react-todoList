@@ -149,21 +149,29 @@ function App() {
         storageItem.push(storageList);
       });
 
-      storageItem.map(list => {
+      storageItem.map( list => {
         if(list.checked === "checked") {
           checkedInputList.push(list);
+          checkedInputList.sort(function (a, b) {
+            return +(a.id > b.id) || +(a.id === b.id) - 1;
+          });    
         } else {
           unCheckedInputList.push(list);
+          unCheckedInputList.sort(function (a, b) {
+            return +(a.id > b.id) || +(a.id === b.id) - 1;
+          });
         }
-      });
-
+      });   
+      
       setInputList([...unCheckedInputList]);
       setCompInputList([...checkedInputList]);
+     
     } else {
       setInputList([]);
     }
+
   }, []);
- 
+
   const submitHandlr = (e) => {
     e.preventDefault();
   }
@@ -179,7 +187,12 @@ function App() {
       keyword: "listItem",
       checked: "unchecked"
     }
-    setInputList([...inputList, newlistItem]);
+    const sortInputList = [...inputList, newlistItem];
+    sortInputList.sort(function (a, b) {
+      return +(a.id > b.id) || +(a.id === b.id) - 1;
+    });
+    setInputList([...sortInputList]);
+    // setInputList([...inputList, newlistItem]);
     setInputText("");
     localStorage.setItem(`listItem${newlistItem.id}`, JSON.stringify(newlistItem));
   }
@@ -200,8 +213,20 @@ function App() {
     const chekedinputId = inputList.filter(list => list.id === id);
     const unChekedinputId = inputList.filter(list => list.id !== id);
     chekedinputId[0].checked = "checked";
-    setInputList([...unChekedinputId]);
-    setCompInputList([...compInputList, ...chekedinputId]);
+    
+    const sortUnChekedinput = [...unChekedinputId];
+    const sortCompInputList = [...compInputList, ...chekedinputId];
+    sortUnChekedinput.sort(function (a, b) {
+      return +(a.id > b.id) || +(a.id === b.id) - 1;
+    });
+    sortCompInputList.sort(function (a, b) {
+      return +(a.id > b.id) || +(a.id === b.id) - 1;
+    });
+    setInputList([...sortUnChekedinput]);
+    setCompInputList([...sortCompInputList]);
+    // setInputList([...unChekedinputId]);
+    // setCompInputList([...compInputList, ...chekedinputId]);
+
     localStorage.setItem(`listItem${chekedinputId[0].id}`, JSON.stringify(...chekedinputId));
   }
 
@@ -209,8 +234,17 @@ function App() {
     const checkedinputId = compInputList.filter(list => list.id !== id);
     const unCheckedinputId = compInputList.filter(list => list.id === id);
     unCheckedinputId[0].checked = "unchecked";
-    setCompInputList([...checkedinputId]);
-    setInputList([...inputList, ...unCheckedinputId]);
+
+    const sortCompInputList = [...checkedinputId];
+    const sortUnChekedinput = [...inputList, ...unCheckedinputId];
+    sortCompInputList.sort(function (a, b) {
+      return +(a.id > b.id) || +(a.id === b.id) - 1;
+    });
+    sortUnChekedinput.sort(function (a, b) {
+      return +(a.id > b.id) || +(a.id === b.id) - 1;
+    });
+    setCompInputList([...sortCompInputList]);
+    setInputList([...sortUnChekedinput]);
     localStorage.setItem(`listItem${unCheckedinputId[0].id}`, JSON.stringify(...unCheckedinputId));
   }
 
