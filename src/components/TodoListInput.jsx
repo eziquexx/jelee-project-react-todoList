@@ -6,9 +6,8 @@ const Li = styled.li`
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   list-style: none;
-  // border: 1px solid red;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -26,14 +25,16 @@ const Div = styled.div`
 const CheckInputStyle = styled.input`
   display: none;
 `
-const InputText = styled.input`
-  width: auto;
+const InputText = styled.textarea`
+  width: inherit;
   height: auto;
   display: inline-block;
   border: none;
   line-height: 1;
   background-color: transparent;
   overflow-wrap: anywhere;
+  overflow-y: hidden;
+  resize: none;
   &:focus {
     width: 100%;
     outline: none;
@@ -71,12 +72,21 @@ function TodoListInput(props) {
   const [checkedId, setCheckedId] = useState("");
   const { btnText } = props;
   const [text, setText] = useState(props.text);
-  const inputTextRef = useRef();
+  const inputTextRef = useRef(null);
 
   useEffect(() => {
     setCheckedId(props);
     checkedfuncVisible();
   }, [checkVisible]);
+
+  const resizeTextArea = () => {
+    inputTextRef.current.style.height = "auto";
+    inputTextRef.current.style.height = inputTextRef.current.scrollHeight + "px";
+  };
+
+  useEffect(() => {
+    resizeTextArea();
+  }, [text])
 
   const checkedfuncVisible = () => {
     if(checkVisible === true) {
@@ -119,7 +129,7 @@ function TodoListInput(props) {
           />
           <label htmlFor={props.id}></label>
           <InputText 
-            type="text"
+            rows={1}
             value={text}
             ref={inputTextRef}
             onBlur={handleBlur}
