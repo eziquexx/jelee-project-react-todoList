@@ -131,6 +131,7 @@ const AddButton = styled.button`
 
 function App() {
   const [inputList, setInputList] = useState([]);
+  const [todoInputList, setTodoInputList] = useState([]);
   const [inputText, setInputText] = useState("");
   const [compInputList, setCompInputList] = useState([]);
   
@@ -149,21 +150,28 @@ function App() {
         storageItem.push(storageList);
       });
 
-      storageItem.map(list => {
+      storageItem.map( list => {
         if(list.checked === "checked") {
           checkedInputList.push(list);
+          checkedInputList.sort(function (a, b) {
+            return +(a.id > b.id) || +(a.id === b.id) - 1;
+          });    
         } else {
           unCheckedInputList.push(list);
+          unCheckedInputList.sort(function (a, b) {
+            return +(a.id > b.id) || +(a.id === b.id) - 1;
+          });
         }
-      });
-
-      setInputList([...unCheckedInputList]);
+      });   
+      
+      setTodoInputList([...unCheckedInputList]);
       setCompInputList([...checkedInputList]);
+      setInputList([...unCheckedInputList, ...checkedInputList]);
     } else {
-      setInputList([]);
+      setTodoInputList([]);
     }
   }, []);
- 
+  
   const submitHandlr = (e) => {
     e.preventDefault();
   }
@@ -179,47 +187,66 @@ function App() {
       keyword: "listItem",
       checked: "unchecked"
     }
+
+    setTodoInputList([...todoInputList, newlistItem]);
     setInputList([...inputList, newlistItem]);
     setInputText("");
     localStorage.setItem(`listItem${newlistItem.id}`, JSON.stringify(newlistItem));
   }
 
   const delList = (id) => {
-    const updateInpuList = inputList.filter(list => list.id !== id);
-    setInputList(updateInpuList);
-    localStorage.removeItem(`listItem${id}`)
+    const updateInpuList = todoInputList.filter(list => list.id !== id);
+    setTodoInputList(updateInpuList);
+    setInputList(...compInputList, updateInpuList);
+    localStorage.removeItem(`listItem${id}`);
   }
 
   const compDelList = (id) => {
     const updateInpuList = compInputList.filter(list => list.id !==id);
     setCompInputList(updateInpuList);
+    setInputList(...todoInputList, updateInpuList);
     localStorage.removeItem(`listItem${id}`);
   }
 
   const checkedList = (id, checked) => {
-    const chekedinputId = inputList.filter(list => list.id === id);
-    const unChekedinputId = inputList.filter(list => list.id !== id);
+    const chekedinputId = todoInputList.filter(list => list.id === id);
+    const unChekedinputId = todoInputList.filter(list => list.id !== id);
     chekedinputId[0].checked = "checked";
-    setInputList([...unChekedinputId]);
-    setCompInputList([...compInputList, ...chekedinputId]);
     localStorage.setItem(`listItem${chekedinputId[0].id}`, JSON.stringify(...chekedinputId));
+
+    const sortCompInputList = [...compInputList];
+
+    sortCompInputList.push(...chekedinputId);
+
+    sortCompInputList.sort(function (a, b) {
+      return +(a.id > b.id) || +(a.id === b.id) - 1;
+    });
+
+    setCompInputList([...sortCompInputList]);
+    setTodoInputList([...unChekedinputId]);
+
   }
 
   const unCheckedList = (id, checked) => {
     const checkedinputId = compInputList.filter(list => list.id !== id);
     const unCheckedinputId = compInputList.filter(list => list.id === id);
     unCheckedinputId[0].checked = "unchecked";
-    setCompInputList([...checkedinputId]);
-    setInputList([...inputList, ...unCheckedinputId]);
     localStorage.setItem(`listItem${unCheckedinputId[0].id}`, JSON.stringify(...unCheckedinputId));
+
+    const sortUnChekedinput = [...todoInputList, ...unCheckedinputId];
+
+    sortUnChekedinput.sort(function (a, b) {
+      return +(a.id > b.id) || +(a.id === b.id) - 1;
+    });
+    setCompInputList([...checkedinputId]);
+    setTodoInputList([...sortUnChekedinput]);
   }
 
   const editInputText = (id, text) => {
-    const editiInputList = inputList.filter(list => list.id === id);
+    const editiInputList = todoInputList.filter(list => list.id === id);
     editiInputList[0].text = text;
     localStorage.setItem(`listItem${editiInputList[0].id}`, JSON.stringify(...editiInputList));
   }
-
   return (
     <Container>
       <H2>To-do list</H2>
@@ -244,7 +271,7 @@ function App() {
               <Legend style={{marginBottom:"4px"}}>List</Legend>
               <Ul>
                 {
-                  inputList.map((list) => {
+                  todoInputList.map((list) => {
                     return(
                       <TodoListInput 
                         key={list.id}

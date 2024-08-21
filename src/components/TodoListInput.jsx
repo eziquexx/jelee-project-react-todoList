@@ -12,6 +12,11 @@ const Li = styled.li`
   &:not(:last-child) {
     margin-bottom: 8px;
   }
+  @media screen and (max-width: 1023px) {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
 `
 const Div = styled.div`
   width: 100%;
