@@ -87,7 +87,9 @@
 - enter키 방지
   - [React KeyboardEvent-onKeyDown](https://ko.react.dev/reference/react-dom/components/common#keyboardevent-handler)
 - 배열 정렬
-  - [MDN-Array.prototype.sort()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) 
+  - [MDN-Array.prototype.sort()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+- textarea 줄바꿈
+  - [CodeSandbox](https://codesandbox.io/p/sandbox/textarea-auto-resize-react-hngvd?file=%2Fsrc%2Findex.js%3A19%2C1)
 - styled-components
   - [styled-components](https://styled-components.com/)
 
