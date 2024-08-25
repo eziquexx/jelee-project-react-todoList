@@ -59,8 +59,8 @@
 <br/>
 
 ## UX/UI 완성
-<img src="https://file.notion.so/f/f/88f41c08-964b-40ac-b3af-41d7c59069dc/6a089de4-1ab1-4154-9dc4-9aaa48b26e8c/image.png?table=block&id=c96f3854-d593-4d0a-8f55-e16a6b073d7c&spaceId=88f41c08-964b-40ac-b3af-41d7c59069dc&expirationTimestamp=1724335200000&signature=RpuchG9StvvV6LDmnQHdiKG5toL3v2O_X31qtV7na0I&downloadName=image.png" alt="todo list 데스크탑 화면">
-<img src="https://file.notion.so/f/f/88f41c08-964b-40ac-b3af-41d7c59069dc/f8636941-8794-4288-9935-30d8bae02183/image.png?table=block&id=2332ebd5-9be3-422f-b1e0-58cf8f83775e&spaceId=88f41c08-964b-40ac-b3af-41d7c59069dc&expirationTimestamp=1724335200000&signature=uCFN1xGe--JV5O6G3I_FzqZvtyoI-195Dw5ta_a42ng&downloadName=image.png" alt="todo list 태블릿, 모바일 화면">
+<img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F88f41c08-964b-40ac-b3af-41d7c59069dc%2F6a089de4-1ab1-4154-9dc4-9aaa48b26e8c%2Fimage.png?table=block&id=c96f3854-d593-4d0a-8f55-e16a6b073d7c&spaceId=88f41c08-964b-40ac-b3af-41d7c59069dc&width=2000&userId=13ecba7f-2c86-40b5-b242-b399280ff4b8&cache=v2" alt="todo list 데스크탑 화면">
+<img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F88f41c08-964b-40ac-b3af-41d7c59069dc%2Ff8636941-8794-4288-9935-30d8bae02183%2Fimage.png?table=block&id=2332ebd5-9be3-422f-b1e0-58cf8f83775e&spaceId=88f41c08-964b-40ac-b3af-41d7c59069dc&width=2000&userId=13ecba7f-2c86-40b5-b242-b399280ff4b8&cache=v2" alt="todo list 태블릿, 모바일 화면">
 
 <br/>
 
