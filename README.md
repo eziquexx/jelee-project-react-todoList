@@ -1,7 +1,7 @@
 # JELEE Mini Project - To-do List made with React
 리액트를 사용하여 To-do List를 만들고 GitHub Pages로 배포하는 개인 미니 프로젝트.
 
-:star: [JELEE Notion - Mini Project](https://honey-plant-22e.notion.site/dev-jelee-5686cfa35c1b4c859a27de25d5fad5dd?pvs=4)로 이동하면 해당 미니 프로젝트 또는 다른 프로젝트를 보실 수 있습니다. :star:
+:star: [JELEE Notion - Mini Project](https://honey-plant-22e.notion.site/dev-jelee-5686cfa35c1b4c859a27de25d5fad5dd?pvs=4)로 이동하면 해당 미니 프로젝트 또는 다른 프로젝트를 보실 수 있습니다. 또한 자세한 내용을 보실 수 있습니다. :star:
 
 <br/>
 
